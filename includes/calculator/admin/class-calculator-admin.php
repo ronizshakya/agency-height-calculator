@@ -107,20 +107,37 @@ class calculatorAdmin
 
         $post_meta = get_post_meta($post_id);
 
-        if ($_POST['user_name'] && $_POST['user_name'] !== $post_meta['user_name'][0]) {
-            update_post_meta($post_id, 'user_name', $_POST['user_name']);
-        } elseif ('' === $_POST['user_name'] && $post_meta['user_name'][0]) {
-            delete_post_meta($post_id, 'user_name', $post_meta['user_name'][0]);
+        if ($_POST['first_name'] && $_POST['first_name'] !== $post_meta['first_name'][0]) {
+            update_post_meta($post_id, 'first_name', $_POST['first_name']);
+        } elseif ('' === $_POST['first_name'] && $post_meta['first_name'][0]) {
+            delete_post_meta($post_id, 'first_name', $post_meta['first_name'][0]);
+        }
+        if (
+            $_POST['last_name'] && $_POST['last_name'] !== $post_meta['last_name'][0]
+        ) {
+            update_post_meta($post_id, 'last_name', $_POST['last_name']);
+        } elseif ('' === $_POST['last_name'] && $post_meta['last_name'][0]) {
+            delete_post_meta($post_id, 'last_name', $post_meta['last_name'][0]);
         }
         if ($_POST['user_email'] && $_POST['user_email'] !== $post_meta['user_email'][0]) {
             update_post_meta($post_id, 'user_email', $_POST['user_email']);
         } elseif ('' === $_POST['user_email'] && $post_meta['user_email'][0]) {
             delete_post_meta($post_id, 'user_email', $post_meta['user_email'][0]);
         }
+        if ($_POST['agency_name'] && $_POST['agency_name'] !== $post_meta['agency_name'][0]) {
+            update_post_meta($post_id, 'agency_name', $_POST['agency_name']);
+        } elseif ('' === $_POST['agency_name'] && $post_meta['agency_name'][0]) {
+            delete_post_meta($post_id, 'agency_name', $post_meta['agency_name'][0]);
+        }
         if ($_POST['telephone'] && $_POST['telephone'] !== $post_meta['telephone'][0]) {
             update_post_meta($post_id, 'telephone', $_POST['telephone']);
         } elseif ('' === $_POST['telephone'] && $post_meta['telephone'][0]) {
             delete_post_meta($post_id, 'telephone', $post_meta['telephone'][0]);
+        }
+        if ($_POST['state'] && $_POST['state'] !== $post_meta['state'][0]) {
+            update_post_meta($post_id, 'state', $_POST['state']);
+        } elseif ('' === $_POST['state'] && $post_meta['state'][0]) {
+            delete_post_meta($post_id, 'state', $post_meta['state'][0]);
         }
         if ($_POST['type_of_agency'] && $_POST['type_of_agency'] !== $post_meta['type_of_agency'][0]) {
             update_post_meta($post_id, 'type_of_agency', $_POST['type_of_agency']);
@@ -294,9 +311,12 @@ class calculatorAdmin
                 $file = fopen('php://output', 'w');
 
                 fputcsv($file, array(
-                    'Name',
+                    'First Name',
+                    'Last Name',
                     'Email',
+                    'Agency Name',
                     'Phone',
+                    'State',
                     'Type of Agency',
                     'Commission Revenue 2021',
                     'Commission Revenue 2020',
@@ -325,9 +345,12 @@ class calculatorAdmin
                 foreach ($arr_post as $post) {
                     setup_postdata($post);
 
-                    $user_name = get_post_meta($post->ID, "user_name");
+                    $first_name = get_post_meta($post->ID, "first_name");
+                    $last_name = get_post_meta($post->ID, "last_name");
                     $user_email = get_post_meta($post->ID, "user_email");
+                    $agency_name = get_post_meta($post->ID, "agency_name");
                     $telephone = get_post_meta($post->ID, "telephone");
+                    $state = get_post_meta($post->ID, "state");
                     $type_of_agency = get_post_meta($post->ID, "type_of_agency");
                     $commission_revenue_2021 = get_post_meta($post->ID, "commission_revenue_2021");
                     $commission_revenue_2020 = get_post_meta($post->ID, "commission_revenue_2020");
@@ -352,9 +375,12 @@ class calculatorAdmin
                     $commission_revenue_multiple_max_value = get_post_meta($post->ID, "commission_revenue_multiple_max_value");
                     $calculator_date_published = get_post_meta($post->ID, "calculator_date_published");
                     fputcsv($file, array(
-                        $user_name[0],
+                        $first_name[0],
+                        $last_name[0],
                         $user_email[0],
+                        $agency_name[0],
                         $telephone[0],
+                        $state[0],
                         $type_of_agency[0],
                         $commission_revenue_2021[0],
                         $commission_revenue_2020[0],

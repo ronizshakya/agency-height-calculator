@@ -28,16 +28,80 @@ class calculatorFrontend
                 </div>
                 <div class="calculator-items">
                     <p>
-                        <label for="user_name">Name</label>
-                        <input type="text" name="user_name" id="user_name" value="" required="required">
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" id="first_name" value="" required="required">
+                    </p>
+                    <p>
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" id="last_name" value="" required="required">
                     </p>
                     <p>
                         <label for="user_email">Email</label>
                         <input type="text" name="user_email" id="user_email" value="" required="required">
                     </p>
                     <p>
+                        <label for="agency_name">Agency Name</label>
+                        <input type="text" name="agency_name" id="agency_name" value="" required="required">
+                    </p>
+                    <p>
                         <label for="telephone">Phone</label>
                         <input type="text" name="telephone" id="telephone" value="" required="required">
+                    </p>
+                    <p>
+                        <label for="state">State</label>
+                        <select name="state">
+                            <option value="Alabama">Alabama</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Arizona">Arizona</option>
+                            <option value="Arkansas">Arkansas</option>
+                            <option value="California">California</option>
+                            <option value="Colorado">Colorado</option>
+                            <option value="Connecticut">Connecticut</option>
+                            <option value="Delaware">Delaware</option>
+                            <option value="District of Columbia">District of Columbia</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Hawaii">Hawaii</option>
+                            <option value="Idaho">Idaho</option>
+                            <option value="Illinois">Illinois</option>
+                            <option value="Indiana">Indiana</option>
+                            <option value="Iowa">Iowa</option>
+                            <option value="Kansas">Kansas</option>
+                            <option value="Kentucky">Kentucky</option>
+                            <option value="Louisiana">Louisiana</option>
+                            <option value="Maine">Maine</option>
+                            <option value="Maryland">Maryland</option>
+                            <option value="Massachusetts">Massachusetts</option>
+                            <option value="Michigan">Michigan</option>
+                            <option value="Minnesota">Minnesota</option>
+                            <option value="Mississippi">Mississippi</option>
+                            <option value="Missouri">Missouri</option>
+                            <option value="Montana">Montana</option>
+                            <option value="Nebraska">Nebraska</option>
+                            <option value="Nevada">Nevada</option>
+                            <option value="New Hampshire">New Hampshire</option>
+                            <option value="New Jersey">New Jersey</option>
+                            <option value="New Mexico">New Mexico</option>
+                            <option value="New York">New York</option>
+                            <option value="North Carolina">North Carolina</option>
+                            <option value="North Dakota">North Dakota</option>
+                            <option value="Ohio">Ohio</option>
+                            <option value="Oklahoma">Oklahoma</option>
+                            <option value="Oregon">Oregon</option>
+                            <option value="Pennsylvania">Pennsylvania</option>
+                            <option value="Rhode Island">Rhode Island</option>
+                            <option value="South Carolina">South Carolina</option>
+                            <option value="South Dakota">South Dakota</option>
+                            <option value="Tennessee">Tennessee</option>
+                            <option value="Texas">Texas</option>
+                            <option value="Utah">Utah</option>
+                            <option value="Vermont">Vermont</option>
+                            <option value="Virginia">Virginia</option>
+                            <option value="Washington">Washington</option>
+                            <option value="West Virginia">West Virginia</option>
+                            <option value="Wisconsin">Wisconsin</option>
+                            <option value="Wyoming">Wyoming</option>
+                        </select>
                     </p>
                     <p>
                         <label for="commission_revenue_2021">Commission Revenue 2021*</label>
@@ -110,9 +174,12 @@ class calculatorFrontend
         if (isset($_POST['agencyheight_calculator_request_nonce']) && wp_verify_nonce($_POST['agencyheight_calculator_request_nonce'], 'agencyheight_calculator_request')) {
             /* Input By seller */
 
-            $user_name         = sanitize_text_field($_POST['user_name']);
+            $first_name         = sanitize_text_field($_POST['first_name']);
+            $last_name         = sanitize_text_field($_POST['last_name']);
             $user_email           = sanitize_email($_POST['user_email']);
+            $agency_name           = sanitize_text_field($_POST['agency_name']);
             $telephone         = sanitize_text_field($_POST['telephone']);
+            $state         = sanitize_text_field($_POST['state']);
             $commission_revenue_2021     = $_POST['commission_revenue_2021'];
             $commission_revenue_2020          = $_POST['commission_revenue_2020'];
             $commission_revenue_2019     = $_POST['commission_revenue_2019'];
@@ -201,7 +268,7 @@ class calculatorFrontend
 
 
             $new_post = array(
-                'post_title' => $user_name . ":" . $user_email,
+                'post_title' => $first_name . " " . $last_name . " :- " . $user_email,
                 'post_status'   => 'publish',
                 'post_type'     => 'calculator_data'
             );
@@ -211,9 +278,12 @@ class calculatorFrontend
             if ($result && !empty($result)) {
                 $post_id = $result;
                 /* Input By seller Data Add to Posts */
-                add_post_meta($post_id, 'user_name', $user_name, true);
+                add_post_meta($post_id, 'first_name', $first_name, true);
+                add_post_meta($post_id, 'last_name', $first_name, true);
                 add_post_meta($post_id, 'user_email', $user_email, true);
+                add_post_meta($post_id, 'agency_name', $agency_name, true);
                 add_post_meta($post_id, 'telephone', $telephone, true);
+                add_post_meta($post_id, 'state', $state, true);
                 add_post_meta($post_id, 'commission_revenue_2021', '$' . $commission_revenue_2021, true);
                 add_post_meta($post_id, 'commission_revenue_2020', '$' . $commission_revenue_2020, true);
                 add_post_meta($post_id, 'commission_revenue_2019', '$' . $commission_revenue_2019, true);

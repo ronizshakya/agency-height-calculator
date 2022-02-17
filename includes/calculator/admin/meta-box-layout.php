@@ -4,9 +4,14 @@ $meta = get_post_meta($post->ID);
 ?>
 <input type="hidden" name="your_meta_box_nonce" value="<?php echo wp_create_nonce(basename(__FILE__)); ?>">
 <p>
-    <label for="user_name">Name</label>
+    <label for="first_name">First Name</label>
     <br>
-    <input type="text" name="user_name" id="user_name" class="regular_text" value="<?php echo $meta['user_name'][0]; ?>">
+    <input type="text" name="first_name" id="first_name" class="regular_text" value="<?php echo $meta['first_name'][0]; ?>">
+</p>
+<p>
+    <label for="last_name">Last Name</label>
+    <br>
+    <input type="text" name="last_name" id="last_name" class="regular_text" value="<?php echo $meta['last_name'][0]; ?>">
 </p>
 <p>
     <label for="user_email">Email</label>
@@ -14,9 +19,19 @@ $meta = get_post_meta($post->ID);
     <input type="text" name="user_email" id="user_email" class="regular_text" value="<?php echo $meta['user_email'][0]; ?>">
 </p>
 <p>
+    <label for="agency_name">Agency Name</label>
+    <br>
+    <input type="text" name="agency_name" id="agency_name" class="regular_text" value="<?php echo $meta['agency_name'][0]; ?>">
+</p>
+<p>
     <label for="telephone">Phone</label>
     <br>
     <input type="text" name="telephone" id="telephone" class="regular_text" value="<?php echo $meta['telephone'][0]; ?>">
+</p>
+<p>
+    <label for="state">State</label>
+    <br>
+    <input type="text" name="state" id="state" class="regular_text" value="<?php echo $meta['state'][0]; ?>">
 </p>
 <p>
     <label for="type_of_agency">Type of Agency</label>
@@ -61,7 +76,7 @@ $meta = get_post_meta($post->ID);
     <input type="text" name="how_much_of_the_book_is_non_standard" id="how_much_of_the_book_is_non_standard" class="regular_text" value="<?php echo $meta['how_much_of_the_book_is_non_standard'][0]; ?>">
 </p>
 <p>
-    <label for="discount_for_non_standard_books">Discount for Non_Standard Books</label>
+    <label for="discount_for_non_standard_books">Discount for Non Standard Books</label>
     <br>
     <input type="text" name="discount_for_non_standard_books" id="discount_for_non_standard_books" class="regular_text" value="<?php echo $meta['discount_for_non_standard_books'][0]; ?>">
 </p>

@@ -28,7 +28,11 @@
 
 	$("#calculator-form").validate({
 		rules: {
-			user_name: {
+			first_name: {
+				required: true,
+				minlength: 3,
+			},
+			last_name: {
 				required: true,
 				minlength: 3,
 			},
@@ -36,7 +40,13 @@
 				required: true,
 				email: true,
 			},
+			agency_name: {
+				required: true,
+			},
 			telephone: {
+				required: true,
+			},
+			state: {
 				required: true,
 			},
 			commission_revenue_2021: {

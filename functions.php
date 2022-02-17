@@ -7,4 +7,4 @@ add_action('wp_enqueue_scripts', 'agencyheight_enqueue');
 
 
 /* Calculator Functions */
-require_once(get_stylesheet_directory() . '/includes/calculator/calculator-functions.php');
+// require_once(get_stylesheet_directory() . '/includes/calculator/calculator-functions.php');
