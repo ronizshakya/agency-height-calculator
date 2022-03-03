@@ -84,7 +84,7 @@ class calculatorAdmin
     }
     public function show_calculator_fields_meta_box($post)
     {
-        require get_stylesheet_directory() . '/includes/calculator/admin/meta-box-layout.php';
+        include(CALCULATOR_PLUGIN_PATH . 'includes/admin/meta-box-layout.php');
     }
     public function save_your_calculator_fields_meta($post_id)
     {

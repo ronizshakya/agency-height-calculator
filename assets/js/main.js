@@ -94,14 +94,16 @@
 					$(form)
 						.find("div.calc-results div.min-value")
 						.html(
-							"Your Commision Revenue Min Value:" +
-								response.data.commission_revenue_multiple_min_value
+							"Your Commision Revenue Min Value: " +
+								response.data.commission_revenue_multiple_min_value +
+								"x"
 						);
 					$(form)
 						.find("div.calc-results div.max-value")
 						.html(
-							"Your Commision Revenue Max Value:" +
-								response.data.commission_revenue_multiple_max_value
+							"Your Commision Revenue Max Value: " +
+								response.data.commission_revenue_multiple_max_value +
+								"x"
 						);
 				},
 			});
