@@ -92,9 +92,9 @@ class calculatorAdmin
     public function save_your_calculator_fields_meta($post_id)
     {
         // verify nonce
-        if (!wp_verify_nonce($_POST['your_meta_box_nonce'], basename(__FILE__))) {
+        if (isset($_POST['your_meta_box_nonce']) && !wp_verify_nonce($_POST['your_meta_box_nonce'], basename(__FILE__))) {
             return $post_id;
-        }
+       
         // check autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
             return $post_id;
@@ -243,6 +243,7 @@ class calculatorAdmin
         } elseif ('' === $_POST['calculator_date_published'] && $post_meta['calculator_date_published'][0]) {
             delete_post_meta($post_id, 'calculator_date_published', $post_meta['calculator_date-published'][0]);
         }
+    }
     }
     public function calculator_add_export_panel()
     {
@@ -486,6 +487,17 @@ class calculatorAdmin
             )
         );
 
+        //Register From Email Field
+        register_setting(
+            'calculator-settings-slug',
+            'calculator_settings_from_email',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => 'sanitize_text_field',
+                'default' => ''
+            )
+        );
+
         //Add a settings field
         add_settings_field(
             'calculator_settings_input_field',
@@ -500,6 +512,15 @@ class calculatorAdmin
             'calculator_settings_input_email_field',
             __('To Email', 'calculator'),
             array($this, 'calculator_settings_input_email_field_callback'),
+            'calculator-settings-slug',
+            'calc_settings_section'          
+        );
+
+        //add settings for From email field
+        add_settings_field(
+            'calculator_settings_from_email',
+            __('From Email', 'calculator'),
+            array($this, 'calculator_settings_from_email_callback'),
             'calculator-settings-slug',
             'calc_settings_section'          
         );
@@ -519,6 +540,15 @@ class calculatorAdmin
         $settings_input_field_email = get_option('calculator_settings_input_email_field');
     ?>
         <input type="email" name="calculator_settings_input_email_field" class="regular-text" value="<?php echo isset($settings_input_field_email) ? esc_attr( $settings_input_field_email ) : '';?> " />
+
+    <?php
+    }
+
+     /*Setting Input From Email Field template*/
+     public function calculator_settings_from_email_callback($args){
+        $settings_input_from_field_email = get_option('calculator_settings_from_email');
+    ?>
+        <input type="email" name="calculator_settings_from_email" class="regular-text" value="<?php echo isset($settings_input_from_field_email) ? esc_attr( $settings_input_from_field_email ) : '';?> " />
 
     <?php
     }

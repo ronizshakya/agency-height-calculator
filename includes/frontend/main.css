@@ -20,7 +20,7 @@ form#calculator-form label span.required {
 form#calculator-form input,
 form#calculator-form select {
   width: 100%;
-  padding: 12px 30px !important;
+  padding: 10px 30px !important;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -68,7 +68,7 @@ form#calculator-form .custom-input-icon.dollor-sign::before {
   position: absolute;
   right: 18px;
   width: 12px;
-  top: 42px;
+  top: 14px;
   left: 0;
   left: 10px;
 }

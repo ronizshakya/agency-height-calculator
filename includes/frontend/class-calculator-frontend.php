@@ -209,34 +209,34 @@ class calculatorFrontend
 
                     </div>
 
-                    <div class="cal-items dollor-sign">
+                    <div class="cal-items">
 
                         <label for="commission_revenue_2021">Commission Revenue 2021<span class="required">*</span></label>
-                        <div class="custom-input-icon">
+                        <div class="custom-input-icon dollor-sign">
                         <input type="number" step="any" id="commission_revenue_2021" name="commission_revenue_2021" value="" required="required" />
                         </div>
                     </div>
 
-                    <div class="cal-items dollor-sign">
+                    <div class="cal-items">
 
                         <label for="commission_revenue_2020">Commission Revenue 2020<span class="required">*</span></label>
-                        <div class="custom-input-icon">
+                        <div class="custom-input-icon dollor-sign">
                         <input type="number" step="any" id="commission_revenue_2020" name="commission_revenue_2020" value="" required="required" />
                         </div>
                     </div>
 
-                    <div class="cal-items dollor-sign">
+                    <div class="cal-items">
 
                         <label for="commission_revenue_2019">Commission Revenue 2019<span class="required">*</span></label>
-                        <div class="custom-input-icon">
+                        <div class="custom-input-icon dollor-sign">
                         <input type="number" step="any" id="commission_revenue_2019" name="commission_revenue_2019" value="" required="required" />
                         </div>
                     </div>
 
-                    <div class="cal-items dollor-sign">
+                    <div class="cal-items">
 
                         <label for="take_home_profit_on_the_book">Take home / Profit on the Book<span class="required">*</span></label>
-                        <div class="custom-input-icon">
+                        <div class="custom-input-icon dollor-sign">
                         <input type="number" step="any" id="take_home_profit_on_the_book" name="take_home_profit_on_the_book" value="" required="required" />
                         </div>
                     </div>
@@ -282,7 +282,6 @@ class calculatorFrontend
 
 
             <?php wp_nonce_field('agencyheight_calculator_request', 'agencyheight_calculator_request_nonce');
-
             ?>
 
             <div class="btn-container">
@@ -667,14 +666,16 @@ class calculatorFrontend
                 // fclose($file);
 
 
-
                 $subject = get_option('calculator_settings_input_field');
+                $admin_email = get_option('calculator_settings_input_email_field');
+                $form_email = get_option('calculator_settings_from_email');
+                $site_name = get_bloginfo( 'name' );
+                $headers = array('Content-Type: text/html; charset=ISO-8859-1','MIME-Version: 1.0','From: '.$site_name.' <'.$form_email.'>','X-Mailer: PHP/' . phpversion());
 
-                $headers = array('Content-Type: text/html; charset=UTF-8');
 
                 $to = get_option('calculator_settings_input_email_field');
 
-                $message = '<div class="cal-items"><h2>Value Calculator Calculator : New Submission </h2></div>';
+                $message = '<div class="cal-items"><h2>Value Calculator Calculator : New Submission </h2></div>';   
                 $message .= '<div class="cal-items">First Name: <span>'.$first_name.'</span></div>';
                 $message .= '<div class="cal-items">Last Name: <span>'.$last_name.'</span></div>';
                 $message .= '<div class="cal-items">Email: <span>'.$user_email.'</span></div>';
